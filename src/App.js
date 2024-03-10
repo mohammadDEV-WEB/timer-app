@@ -1,25 +1,18 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import ReactDOM, { createRoot } from "react-dom/client";
+import "./index.css";
+import Hello from "./hello";
+import Timer from "./time";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class Massage extends React.Component {
+  render() {
+    return (
+      <div>
+        <Hello />
+        <Timer />
+      </div>
+    );
+  }
 }
 
-export default App;
+export default Massage
