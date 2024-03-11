@@ -4,7 +4,7 @@ import "./index.css";
 
 class Hello extends React.Component {
   render() {
-    return <h2 className="text">سلام بچه ها</h2>;
+    return <h2 className="text" >{this.props.title}</h2>;
   }
 }
 

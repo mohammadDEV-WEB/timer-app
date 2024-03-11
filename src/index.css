@@ -1,5 +1,13 @@
-body {
-  background-color: black;
+@font-face {
+  font-family: face;
+  src: url(../assets/Poppins-MediumItalic.ttf);
+}
+@font-face {
+  font-family: face;
+  src: url(../assets/Yekan.woff);
+}
+.main{
+  font-family: face;
   height: 100vh;
   display: flex;
   align-items: center;
@@ -7,16 +15,63 @@ body {
   color: rgba(228, 127, 3, 0.628);
 }
 .time {
+  background-color: black;
   width: 250px;
   height: 250px;
+  margin-left: 50px;
   border-radius: 50%;
   box-shadow: 0 0 20px rgb(146, 240, 216);
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-bottom: 40px;
 }
 .text{
   align-items: center;
   font-size: 40px;
   display: flex;justify-content: center;
+}
+
+.start-btn{
+  background-color: green;
+  border: 0;
+  width: 60px;
+  height: 60px;
+  font-size: 15px;
+  border-radius: 50%;
+  transition: all .4s;
+  color: white;
+}
+
+.stop-btn{
+  margin-left: 50px;
+  background-color: red;
+  border: 0;
+  width: 60px;
+  height: 60px;
+  font-size: 15px;
+  border-radius: 50%;
+  transition: all .4s;
+  color: white;
+}
+.reset-btn{
+  margin-left: 50px;
+  background-color: #777;
+  border: 0;
+  width: 60px;
+  height: 60px;
+  font-size: 15px;
+  border-radius: 50%;
+  transition: all .4s;
+  color: white;
+}
+
+.start-btn:hover{
+  letter-spacing: 3px;
+}
+.stop-btn:hover{
+  letter-spacing: 3px;
+}
+.reset-btn:hover{
+  letter-spacing: 3px;
 }
