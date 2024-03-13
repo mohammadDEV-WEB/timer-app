@@ -1,69 +1,11 @@
-import React , {useEffect, useState} from "react";
-import ReactDOM, { createRoot } from "react-dom/client";
+import React, { useEffect, useState } from "react";
+import ReactDOM from "react-dom";
 import "./index.css";
+import SaveItem from "./listSaveTime";
+import TestContext from "./testContext";
 
 var interval;
 
-// function Timer() {
-//   const [hour,setHour]=useState(0)
-//   const [minute,setMinute]=useState(0)
-//   const [second,setSecond]=useState(0)
-//   const [isStart,setIsStart]=useState(false)
-
-//   const startTimer =()=>{
-//     if (isStart===false) {
-//       interval =setInterval(()=>{
-//         setSecond(second+1)
-//         if (second===60) {
-//           setSecond(0)
-//           setMinute(minute+1)
-//         }
-//         if (minute===60) {
-//           setMinute(0)
-//           setHour(hour+1)
-//         }
-//         if (hour===24) {
-//           setHour(0)
-//         }
-//       },1000)
-//     }
-//   }
-
-//   // useEffect(()=>{
-//   //   startTimer()
-//   // },[second,minute,hour])
-
-//   const stopTimer =()=>{
-//     setIsStart(false)
-//     clearInterval(interval)
-//   }
-
-//   const resetTimer =()=>{
-//     stopTimer()
-//     setHour(0)
-//     setMinute(0)
-//     setSecond(0)
-//   }
-//   let h = hour;
-//   let m = minute;
-//   let s = second;
-//   return( 
-//       <>
-//         <h1 className="time">{`${h > 9 ? h : "0" + h} : ${m > 9 ? m : "0" + m} : ${
-//           s > 9 ? s : "0" + s
-//         }`}</h1>
-//         <button className="start-btn" onClick={startTimer}>
-//           start
-//         </button>
-//         <button className="stop-btn" onClick={stopTimer}>
-//           stop
-//         </button>
-//         <button className="reset-btn" onClick={resetTimer}>
-//           reset
-//         </button>
-//       </>
-//   )
-// }
 class Timer extends React.Component {
   constructor() {
     super();
@@ -75,6 +17,7 @@ class Timer extends React.Component {
     };
   }
 
+  static contextType=TestContext
   //============= this code for start timer===========
 
   startTimer = () => {
@@ -102,15 +45,24 @@ class Timer extends React.Component {
         }
       }, 1000);
     }
+    this.props.changeTitle("شروع شد😍");
   };
+  //============= setState for save time===========
+
+  saveTime = () => {
+    let saveTimeItem = document.querySelector('.time').innerHTML
+    this.context.setSaveTime([...this.context.saveTime, saveTimeItem]);
+  };
+
   //============= this code for stop timer===========
   stopTimer = (e) => {
     this.setState({
       isStart: false,
     });
     clearInterval(interval);
+    this.props.changeTitle("وایستادی😒");
   };
-
+  //============= this code for reset timer===========
   resetTimer = (e) => {
     this.stopTimer();
     this.setState({
@@ -118,6 +70,7 @@ class Timer extends React.Component {
       minute: 0,
       second: 0,
     });
+    this.props.changeTitle("دوباره😁");
   };
 
   render() {
@@ -126,21 +79,31 @@ class Timer extends React.Component {
     let s = this.state.second;
     return (
       <>
-        <h1 className="time">{`${h > 9 ? h : "0" + h} : ${m > 9 ? m : "0" + m} : ${
-          s > 9 ? s : "0" + s
-        }`}</h1>
-        <button className="start-btn" onClick={this.startTimer}>
-          start
-        </button>
-        <button className="stop-btn" onClick={this.stopTimer}>
-          stop
-        </button>
-        <button className="reset-btn" onClick={this.resetTimer}>
-          reset
-        </button>
-        <button onClick={this.props.changeState} style={{background:this.props.isLight? "black" : "white",color:this.props.isLight? "white" :"black"}} className="reset-btn" >
-        {this.props.isLight? "dark" : "light"}
-        </button>
+        <h1 onClick={this.saveTime} className="time">{`${
+          h > 9 ? h : "0" + h
+        } : ${m > 9 ? m : "0" + m} : ${s > 9 ? s : "0" + s}`}</h1>
+
+        <div className="btn">
+          <button className="start-btn" onClick={this.startTimer}>
+            start
+          </button>
+          <button className="stop-btn" onClick={this.stopTimer}>
+            stop
+          </button>
+          <button className="reset-btn" onClick={this.resetTimer}>
+            reset
+          </button>
+          <button
+            onClick={this.props.changeState}
+            style={{
+              background: this.props.isLight ? "black" : "white",
+              color: this.props.isLight ? "white" : "black",
+            }}
+            className="reset-btn"
+          >
+            {this.props.isLight ? "dark" : "light"}
+          </button>
+        </div>
       </>
     );
   }

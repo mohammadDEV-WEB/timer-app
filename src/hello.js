@@ -1,5 +1,5 @@
 import React from "react";
-import ReactDOM, { createRoot } from "react-dom/client";
+import ReactDOM from "react-dom";
 import "./index.css";
 
 class Hello extends React.Component {

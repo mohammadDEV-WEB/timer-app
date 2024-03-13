@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM, { createRoot } from 'react-dom/client';
+import ReactDOM from 'react-dom';
 import './index.css';
 
 import Massage from './app'
@@ -7,4 +7,4 @@ import Massage from './app'
 
 
 
-createRoot(document.getElementById('root')).render(<Massage/>)
+ReactDOM.render(<Massage/>,document.getElementById('root'))
